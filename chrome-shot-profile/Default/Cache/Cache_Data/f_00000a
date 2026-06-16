@@ -1,0 +1,300 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/ComparePage.jsx");const useContext = __vite__cjsImport1_react["useContext"]; const useEffect = __vite__cjsImport1_react["useEffect"];const _jsxDEV = __vite__cjsImport6_react_jsxDevRuntime["jsxDEV"];import { Plus, Trash2 } from "/node_modules/.vite/deps/lucide-react.js?v=fb08da20";
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=e9d0fb4e";
+import { Link } from "/node_modules/.vite/deps/react-router-dom.js?v=8788fba6";
+import { CompareContext } from "/src/context/CompareContext.jsx";
+import { formatMileage } from "/src/utils/formatMileage.js";
+import { formatPrice } from "/src/utils/formatPrice.js";
+var _jsxFileName = "C:/Users/JOHNNY KING/Desktop/my car website/jkautos/client/src/pages/ComparePage.jsx";
+import __vite__cjsImport6_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=e9d0fb4e";
+var _s = $RefreshSig$();
+const rows = [
+	[
+		"Price",
+		"price",
+		(car) => formatPrice(car.discounted_price || car.price),
+		"lower"
+	],
+	[
+		"Year",
+		"year",
+		(car) => car.year,
+		"higher"
+	],
+	[
+		"Mileage",
+		"mileage",
+		(car) => formatMileage(car.mileage),
+		"lower"
+	],
+	[
+		"Engine",
+		"engine_size",
+		(car) => car.engine_size
+	],
+	[
+		"HP",
+		"horsepower",
+		(car) => car.horsepower,
+		"higher"
+	],
+	[
+		"Transmission",
+		"transmission",
+		(car) => car.transmission
+	],
+	[
+		"Fuel",
+		"fuel_type",
+		(car) => car.fuel_type
+	],
+	[
+		"Drivetrain",
+		"drivetrain",
+		(car) => car.drivetrain?.toUpperCase()
+	],
+	[
+		"Body Type",
+		"body_type",
+		(car) => car.body_type
+	],
+	[
+		"Seats",
+		"seats",
+		(car) => car.seats,
+		"higher"
+	],
+	[
+		"Color",
+		"color",
+		(car) => car.color
+	]
+];
+export default function ComparePage() {
+	_s();
+	const { compareList, removeFromCompare, clearCompare } = useContext(CompareContext);
+	useEffect(() => {
+		document.title = "Compare Cars | JK Autos";
+	}, []);
+	const highlight = (row, car) => {
+		if (!row[3] || compareList.length < 2) return "";
+		const values = compareList.map((item) => Number(item[row[1]] || 0));
+		const best = row[3] === "lower" ? Math.min(...values) : Math.max(...values);
+		const worst = row[3] === "lower" ? Math.max(...values) : Math.min(...values);
+		if (Number(car[row[1]]) === best) return "text-emerald-400";
+		if (Number(car[row[1]]) === worst) return "text-red-400";
+		return "";
+	};
+	return /* @__PURE__ */ _jsxDEV("main", {
+		className: "page-shell",
+		children: /* @__PURE__ */ _jsxDEV("div", {
+			className: "mx-auto max-w-7xl px-4",
+			children: [
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "breadcrumb",
+					children: "Home / Compare"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 42,
+					columnNumber: 9
+				}, this),
+				/* @__PURE__ */ _jsxDEV("div", {
+					className: "mb-8 flex items-end justify-between gap-4",
+					children: [/* @__PURE__ */ _jsxDEV("div", { children: [/* @__PURE__ */ _jsxDEV("p", {
+						className: "eyebrow",
+						children: "Side by side"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 45,
+						columnNumber: 13
+					}, this), /* @__PURE__ */ _jsxDEV("h1", {
+						className: "page-title",
+						children: "Compare Vehicles"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 46,
+						columnNumber: 13
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 44,
+						columnNumber: 11
+					}, this), compareList.length > 0 && /* @__PURE__ */ _jsxDEV("button", {
+						className: "secondary-btn",
+						onClick: clearCompare,
+						children: [/* @__PURE__ */ _jsxDEV(Trash2, { className: "h-4 w-4" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 48,
+							columnNumber: 95
+						}, this), " Clear All"]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 48,
+						columnNumber: 38
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 43,
+					columnNumber: 9
+				}, this),
+				compareList.length === 0 ? /* @__PURE__ */ _jsxDEV("div", {
+					className: "empty-state",
+					children: [
+						/* @__PURE__ */ _jsxDEV(Plus, { className: "h-12 w-12 text-red-500" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 51,
+							columnNumber: 40
+						}, this),
+						/* @__PURE__ */ _jsxDEV("h2", { children: "No Cars Selected" }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 51,
+							columnNumber: 83
+						}, this),
+						/* @__PURE__ */ _jsxDEV(Link, {
+							to: "/cars",
+							className: "primary-btn",
+							children: "Add Cars"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 51,
+							columnNumber: 108
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 51,
+					columnNumber: 11
+				}, this) : /* @__PURE__ */ _jsxDEV("div", {
+					className: "overflow-x-auto",
+					children: /* @__PURE__ */ _jsxDEV("table", {
+						className: "compare-table",
+						children: [/* @__PURE__ */ _jsxDEV("thead", { children: /* @__PURE__ */ _jsxDEV("tr", { children: [
+							/* @__PURE__ */ _jsxDEV("th", { children: "Spec" }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 57,
+								columnNumber: 19
+							}, this),
+							compareList.map((car) => /* @__PURE__ */ _jsxDEV("th", { children: [
+								/* @__PURE__ */ _jsxDEV("img", {
+									src: car.images?.[0],
+									alt: car.title
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 60,
+									columnNumber: 23
+								}, this),
+								/* @__PURE__ */ _jsxDEV("p", { children: car.title }, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 61,
+									columnNumber: 23
+								}, this),
+								/* @__PURE__ */ _jsxDEV("button", {
+									onClick: () => removeFromCompare(car.id),
+									children: "Remove"
+								}, void 0, false, {
+									fileName: _jsxFileName,
+									lineNumber: 62,
+									columnNumber: 23
+								}, this)
+							] }, car.id, true, {
+								fileName: _jsxFileName,
+								lineNumber: 59,
+								columnNumber: 21
+							}, this)),
+							compareList.length < 3 && /* @__PURE__ */ _jsxDEV("th", { children: /* @__PURE__ */ _jsxDEV(Link, {
+								to: "/cars",
+								className: "secondary-btn",
+								children: "Add Car"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 65,
+								columnNumber: 50
+							}, this) }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 65,
+								columnNumber: 46
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 56,
+							columnNumber: 17
+						}, this) }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 55,
+							columnNumber: 15
+						}, this), /* @__PURE__ */ _jsxDEV("tbody", { children: rows.map((row) => /* @__PURE__ */ _jsxDEV("tr", { children: [
+							/* @__PURE__ */ _jsxDEV("td", { children: row[0] }, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 71,
+								columnNumber: 21
+							}, this),
+							compareList.map((car) => /* @__PURE__ */ _jsxDEV("td", {
+								className: highlight(row, car),
+								children: row[2](car)
+							}, car.id, false, {
+								fileName: _jsxFileName,
+								lineNumber: 72,
+								columnNumber: 47
+							}, this)),
+							compareList.length < 3 && /* @__PURE__ */ _jsxDEV("td", {}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 73,
+								columnNumber: 48
+							}, this)
+						] }, row[0], true, {
+							fileName: _jsxFileName,
+							lineNumber: 70,
+							columnNumber: 19
+						}, this)) }, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 68,
+							columnNumber: 15
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 54,
+						columnNumber: 13
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 53,
+					columnNumber: 11
+				}, this)
+			]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 41,
+			columnNumber: 7
+		}, this)
+	}, void 0, false, {
+		fileName: _jsxFileName,
+		lineNumber: 40,
+		columnNumber: 5
+	}, this);
+}
+_s(ComparePage, "qqiVyDp6cHEjFhrLeqFkl1ppzFw=");
+_c = ComparePage;
+var _c;
+$RefreshReg$(_c, "ComparePage");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+import * as __vite_react_currentExports from "/src/pages/ComparePage.jsx";
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+
+  const currentExports = __vite_react_currentExports;
+  queueMicrotask(() => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/JOHNNY KING/Desktop/my car website/jkautos/client/src/pages/ComparePage.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/JOHNNY KING/Desktop/my car website/jkautos/client/src/pages/ComparePage.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/JOHNNY KING/Desktop/my car website/jkautos/client/src/pages/ComparePage.jsx" + ' ' + id); }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJtYXBwaW5ncyI6IkFBQUEsU0FBUyxNQUFNLGNBQWM7QUFDN0IsU0FBUyxZQUFZLGlCQUFpQjtBQUN0QyxTQUFTLFlBQVk7QUFDckIsU0FBUyxzQkFBc0I7QUFDL0IsU0FBUyxxQkFBcUI7QUFDOUIsU0FBUyxtQkFBbUI7Ozs7QUFFNUIsTUFBTSxPQUFPO0NBQ1g7RUFBQztFQUFTO0dBQVUsUUFBUSxZQUFZLElBQUksb0JBQW9CLElBQUksS0FBSztFQUFHO0NBQU87Q0FDbkY7RUFBQztFQUFRO0dBQVMsUUFBUSxJQUFJO0VBQU07Q0FBUTtDQUM1QztFQUFDO0VBQVc7R0FBWSxRQUFRLGNBQWMsSUFBSSxPQUFPO0VBQUc7Q0FBTztDQUNuRTtFQUFDO0VBQVU7R0FBZ0IsUUFBUSxJQUFJO0NBQVc7Q0FDbEQ7RUFBQztFQUFNO0dBQWUsUUFBUSxJQUFJO0VBQVk7Q0FBUTtDQUN0RDtFQUFDO0VBQWdCO0dBQWlCLFFBQVEsSUFBSTtDQUFZO0NBQzFEO0VBQUM7RUFBUTtHQUFjLFFBQVEsSUFBSTtDQUFTO0NBQzVDO0VBQUM7RUFBYztHQUFlLFFBQVEsSUFBSSxZQUFZLFlBQVk7Q0FBQztDQUNuRTtFQUFDO0VBQWE7R0FBYyxRQUFRLElBQUk7Q0FBUztDQUNqRDtFQUFDO0VBQVM7R0FBVSxRQUFRLElBQUk7RUFBTztDQUFRO0NBQy9DO0VBQUM7RUFBUztHQUFVLFFBQVEsSUFBSTtDQUFLO0FBQ3ZDO0FBRUEsZUFBZSxTQUFTLGNBQWM7O0NBQ3BDLE1BQU0sRUFBRSxhQUFhLG1CQUFtQixpQkFBaUIsV0FBVyxjQUFjO0NBRWxGLGdCQUFnQjtFQUNkLFNBQVMsUUFBUTtDQUNuQixHQUFHLENBQUMsQ0FBQztDQUVMLE1BQU0sYUFBYSxLQUFLLFFBQVE7RUFDOUIsSUFBSSxDQUFDLElBQUksTUFBTSxZQUFZLFNBQVMsR0FBRyxPQUFPO0VBQzlDLE1BQU0sU0FBUyxZQUFZLEtBQUssU0FBUyxPQUFPLEtBQUssSUFBSSxPQUFPLENBQUMsQ0FBQztFQUNsRSxNQUFNLE9BQU8sSUFBSSxPQUFPLFVBQVUsS0FBSyxJQUFJLEdBQUcsTUFBTSxJQUFJLEtBQUssSUFBSSxHQUFHLE1BQU07RUFDMUUsTUFBTSxRQUFRLElBQUksT0FBTyxVQUFVLEtBQUssSUFBSSxHQUFHLE1BQU0sSUFBSSxLQUFLLElBQUksR0FBRyxNQUFNO0VBQzNFLElBQUksT0FBTyxJQUFJLElBQUksR0FBRyxNQUFNLE1BQU0sT0FBTztFQUN6QyxJQUFJLE9BQU8sSUFBSSxJQUFJLEdBQUcsTUFBTSxPQUFPLE9BQU87RUFDMUMsT0FBTztDQUNUO0NBRUEsT0FDRSx3QkFBQyxRQUFEO0VBQU0sV0FBVTtZQUNkLHdCQUFDLE9BQUQ7R0FBSyxXQUFVO2FBQWY7SUFDRSx3QkFBQyxPQUFEO0tBQUssV0FBVTtlQUFhO0lBQW1COzs7OztJQUMvQyx3QkFBQyxPQUFEO0tBQUssV0FBVTtlQUFmLENBQ0Usd0JBQUMsT0FBRCxhQUNFLHdCQUFDLEtBQUQ7TUFBRyxXQUFVO2dCQUFVO0tBQWU7Ozs7ZUFDdEMsd0JBQUMsTUFBRDtNQUFJLFdBQVU7Z0JBQWE7S0FBb0I7Ozs7YUFDNUM7Ozs7ZUFDSixZQUFZLFNBQVMsS0FBSyx3QkFBQyxVQUFEO01BQVEsV0FBVTtNQUFnQixTQUFTO2dCQUEzQyxDQUF5RCx3QkFBQyxRQUFELEVBQVEsV0FBVSxVQUFXOzs7O2dCQUFDLFlBQWtCOzs7OzthQUNqSTs7Ozs7O0lBQ0osWUFBWSxXQUFXLElBQ3RCLHdCQUFDLE9BQUQ7S0FBSyxXQUFVO2VBQWY7TUFBNkIsd0JBQUMsTUFBRCxFQUFNLFdBQVUseUJBQTBCOzs7OztNQUFDLHdCQUFDLE1BQUQsWUFBSSxtQkFBb0I7Ozs7O01BQUMsd0JBQUMsTUFBRDtPQUFNLElBQUc7T0FBUSxXQUFVO2lCQUFjO01BQWM7Ozs7O0tBQU07Ozs7O2VBRTlKLHdCQUFDLE9BQUQ7S0FBSyxXQUFVO2VBQ2Isd0JBQUMsU0FBRDtNQUFPLFdBQVU7Z0JBQWpCLENBQ0Usd0JBQUMsU0FBRCxZQUNFLHdCQUFDLE1BQUQ7T0FDRSx3QkFBQyxNQUFELFlBQUksT0FBUTs7Ozs7T0FDWCxZQUFZLEtBQUssUUFDaEIsd0JBQUMsTUFBRDtRQUNFLHdCQUFDLE9BQUQ7U0FBSyxLQUFLLElBQUksU0FBUztTQUFJLEtBQUssSUFBSTtRQUFROzs7OztRQUM1Qyx3QkFBQyxLQUFELFlBQUksSUFBSSxNQUFTOzs7OztRQUNqQix3QkFBQyxVQUFEO1NBQVEsZUFBZSxrQkFBa0IsSUFBSSxFQUFFO21CQUFHO1FBQWM7Ozs7O09BQzlELEtBSkssSUFBSTs7OztjQUlULENBQ0w7T0FDQSxZQUFZLFNBQVMsS0FBSyx3QkFBQyxNQUFELFlBQUksd0JBQUMsTUFBRDtRQUFNLElBQUc7UUFBUSxXQUFVO2tCQUFnQjtPQUFhOzs7O2dCQUFLOzs7OztNQUMxRjs7OztlQUNDOzs7O2dCQUNQLHdCQUFDLFNBQUQsWUFDRyxLQUFLLEtBQUssUUFDVCx3QkFBQyxNQUFEO09BQ0Usd0JBQUMsTUFBRCxZQUFLLElBQUksR0FBTzs7Ozs7T0FDZixZQUFZLEtBQUssUUFBUSx3QkFBQyxNQUFEO1FBQWlCLFdBQVcsVUFBVSxLQUFLLEdBQUc7a0JBQUksSUFBSSxHQUFHLEdBQUc7T0FBTSxHQUF6RCxJQUFJOzs7O2NBQXFELENBQUM7T0FDNUYsWUFBWSxTQUFTLEtBQUssd0JBQUMsTUFBRCxDQUFLOzs7OztNQUM5QixLQUpLLElBQUk7Ozs7YUFJVCxDQUNMLEVBQ0k7Ozs7Y0FDRjs7Ozs7O0lBQ0o7Ozs7O0dBRUo7Ozs7OztDQUNEOzs7OztBQUVWIiwibmFtZXMiOltdLCJzb3VyY2VzIjpbIkNvbXBhcmVQYWdlLmpzeCJdLCJ2ZXJzaW9uIjozLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBQbHVzLCBUcmFzaDIgfSBmcm9tIFwibHVjaWRlLXJlYWN0XCI7XG5pbXBvcnQgeyB1c2VDb250ZXh0LCB1c2VFZmZlY3QgfSBmcm9tIFwicmVhY3RcIjtcbmltcG9ydCB7IExpbmsgfSBmcm9tIFwicmVhY3Qtcm91dGVyLWRvbVwiO1xuaW1wb3J0IHsgQ29tcGFyZUNvbnRleHQgfSBmcm9tIFwiLi4vY29udGV4dC9Db21wYXJlQ29udGV4dFwiO1xuaW1wb3J0IHsgZm9ybWF0TWlsZWFnZSB9IGZyb20gXCIuLi91dGlscy9mb3JtYXRNaWxlYWdlXCI7XG5pbXBvcnQgeyBmb3JtYXRQcmljZSB9IGZyb20gXCIuLi91dGlscy9mb3JtYXRQcmljZVwiO1xuXG5jb25zdCByb3dzID0gW1xuICBbXCJQcmljZVwiLCBcInByaWNlXCIsIChjYXIpID0+IGZvcm1hdFByaWNlKGNhci5kaXNjb3VudGVkX3ByaWNlIHx8IGNhci5wcmljZSksIFwibG93ZXJcIl0sXG4gIFtcIlllYXJcIiwgXCJ5ZWFyXCIsIChjYXIpID0+IGNhci55ZWFyLCBcImhpZ2hlclwiXSxcbiAgW1wiTWlsZWFnZVwiLCBcIm1pbGVhZ2VcIiwgKGNhcikgPT4gZm9ybWF0TWlsZWFnZShjYXIubWlsZWFnZSksIFwibG93ZXJcIl0sXG4gIFtcIkVuZ2luZVwiLCBcImVuZ2luZV9zaXplXCIsIChjYXIpID0+IGNhci5lbmdpbmVfc2l6ZV0sXG4gIFtcIkhQXCIsIFwiaG9yc2Vwb3dlclwiLCAoY2FyKSA9PiBjYXIuaG9yc2Vwb3dlciwgXCJoaWdoZXJcIl0sXG4gIFtcIlRyYW5zbWlzc2lvblwiLCBcInRyYW5zbWlzc2lvblwiLCAoY2FyKSA9PiBjYXIudHJhbnNtaXNzaW9uXSxcbiAgW1wiRnVlbFwiLCBcImZ1ZWxfdHlwZVwiLCAoY2FyKSA9PiBjYXIuZnVlbF90eXBlXSxcbiAgW1wiRHJpdmV0cmFpblwiLCBcImRyaXZldHJhaW5cIiwgKGNhcikgPT4gY2FyLmRyaXZldHJhaW4/LnRvVXBwZXJDYXNlKCldLFxuICBbXCJCb2R5IFR5cGVcIiwgXCJib2R5X3R5cGVcIiwgKGNhcikgPT4gY2FyLmJvZHlfdHlwZV0sXG4gIFtcIlNlYXRzXCIsIFwic2VhdHNcIiwgKGNhcikgPT4gY2FyLnNlYXRzLCBcImhpZ2hlclwiXSxcbiAgW1wiQ29sb3JcIiwgXCJjb2xvclwiLCAoY2FyKSA9PiBjYXIuY29sb3JdLFxuXTtcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gQ29tcGFyZVBhZ2UoKSB7XG4gIGNvbnN0IHsgY29tcGFyZUxpc3QsIHJlbW92ZUZyb21Db21wYXJlLCBjbGVhckNvbXBhcmUgfSA9IHVzZUNvbnRleHQoQ29tcGFyZUNvbnRleHQpO1xuXG4gIHVzZUVmZmVjdCgoKSA9PiB7XG4gICAgZG9jdW1lbnQudGl0bGUgPSBcIkNvbXBhcmUgQ2FycyB8IEpLIEF1dG9zXCI7XG4gIH0sIFtdKTtcblxuICBjb25zdCBoaWdobGlnaHQgPSAocm93LCBjYXIpID0+IHtcbiAgICBpZiAoIXJvd1szXSB8fCBjb21wYXJlTGlzdC5sZW5ndGggPCAyKSByZXR1cm4gXCJcIjtcbiAgICBjb25zdCB2YWx1ZXMgPSBjb21wYXJlTGlzdC5tYXAoKGl0ZW0pID0+IE51bWJlcihpdGVtW3Jvd1sxXV0gfHwgMCkpO1xuICAgIGNvbnN0IGJlc3QgPSByb3dbM10gPT09IFwibG93ZXJcIiA/IE1hdGgubWluKC4uLnZhbHVlcykgOiBNYXRoLm1heCguLi52YWx1ZXMpO1xuICAgIGNvbnN0IHdvcnN0ID0gcm93WzNdID09PSBcImxvd2VyXCIgPyBNYXRoLm1heCguLi52YWx1ZXMpIDogTWF0aC5taW4oLi4udmFsdWVzKTtcbiAgICBpZiAoTnVtYmVyKGNhcltyb3dbMV1dKSA9PT0gYmVzdCkgcmV0dXJuIFwidGV4dC1lbWVyYWxkLTQwMFwiO1xuICAgIGlmIChOdW1iZXIoY2FyW3Jvd1sxXV0pID09PSB3b3JzdCkgcmV0dXJuIFwidGV4dC1yZWQtNDAwXCI7XG4gICAgcmV0dXJuIFwiXCI7XG4gIH07XG5cbiAgcmV0dXJuIChcbiAgICA8bWFpbiBjbGFzc05hbWU9XCJwYWdlLXNoZWxsXCI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm14LWF1dG8gbWF4LXctN3hsIHB4LTRcIj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJicmVhZGNydW1iXCI+SG9tZSAvIENvbXBhcmU8L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtYi04IGZsZXggaXRlbXMtZW5kIGp1c3RpZnktYmV0d2VlbiBnYXAtNFwiPlxuICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJleWVicm93XCI+U2lkZSBieSBzaWRlPC9wPlxuICAgICAgICAgICAgPGgxIGNsYXNzTmFtZT1cInBhZ2UtdGl0bGVcIj5Db21wYXJlIFZlaGljbGVzPC9oMT5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICB7Y29tcGFyZUxpc3QubGVuZ3RoID4gMCAmJiA8YnV0dG9uIGNsYXNzTmFtZT1cInNlY29uZGFyeS1idG5cIiBvbkNsaWNrPXtjbGVhckNvbXBhcmV9PjxUcmFzaDIgY2xhc3NOYW1lPVwiaC00IHctNFwiIC8+IENsZWFyIEFsbDwvYnV0dG9uPn1cbiAgICAgICAgPC9kaXY+XG4gICAgICAgIHtjb21wYXJlTGlzdC5sZW5ndGggPT09IDAgPyAoXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJlbXB0eS1zdGF0ZVwiPjxQbHVzIGNsYXNzTmFtZT1cImgtMTIgdy0xMiB0ZXh0LXJlZC01MDBcIiAvPjxoMj5ObyBDYXJzIFNlbGVjdGVkPC9oMj48TGluayB0bz1cIi9jYXJzXCIgY2xhc3NOYW1lPVwicHJpbWFyeS1idG5cIj5BZGQgQ2FyczwvTGluaz48L2Rpdj5cbiAgICAgICAgKSA6IChcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm92ZXJmbG93LXgtYXV0b1wiPlxuICAgICAgICAgICAgPHRhYmxlIGNsYXNzTmFtZT1cImNvbXBhcmUtdGFibGVcIj5cbiAgICAgICAgICAgICAgPHRoZWFkPlxuICAgICAgICAgICAgICAgIDx0cj5cbiAgICAgICAgICAgICAgICAgIDx0aD5TcGVjPC90aD5cbiAgICAgICAgICAgICAgICAgIHtjb21wYXJlTGlzdC5tYXAoKGNhcikgPT4gKFxuICAgICAgICAgICAgICAgICAgICA8dGgga2V5PXtjYXIuaWR9PlxuICAgICAgICAgICAgICAgICAgICAgIDxpbWcgc3JjPXtjYXIuaW1hZ2VzPy5bMF19IGFsdD17Y2FyLnRpdGxlfSAvPlxuICAgICAgICAgICAgICAgICAgICAgIDxwPntjYXIudGl0bGV9PC9wPlxuICAgICAgICAgICAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gcmVtb3ZlRnJvbUNvbXBhcmUoY2FyLmlkKX0+UmVtb3ZlPC9idXR0b24+XG4gICAgICAgICAgICAgICAgICAgIDwvdGg+XG4gICAgICAgICAgICAgICAgICApKX1cbiAgICAgICAgICAgICAgICAgIHtjb21wYXJlTGlzdC5sZW5ndGggPCAzICYmIDx0aD48TGluayB0bz1cIi9jYXJzXCIgY2xhc3NOYW1lPVwic2Vjb25kYXJ5LWJ0blwiPkFkZCBDYXI8L0xpbms+PC90aD59XG4gICAgICAgICAgICAgICAgPC90cj5cbiAgICAgICAgICAgICAgPC90aGVhZD5cbiAgICAgICAgICAgICAgPHRib2R5PlxuICAgICAgICAgICAgICAgIHtyb3dzLm1hcCgocm93KSA9PiAoXG4gICAgICAgICAgICAgICAgICA8dHIga2V5PXtyb3dbMF19PlxuICAgICAgICAgICAgICAgICAgICA8dGQ+e3Jvd1swXX08L3RkPlxuICAgICAgICAgICAgICAgICAgICB7Y29tcGFyZUxpc3QubWFwKChjYXIpID0+IDx0ZCBrZXk9e2Nhci5pZH0gY2xhc3NOYW1lPXtoaWdobGlnaHQocm93LCBjYXIpfT57cm93WzJdKGNhcil9PC90ZD4pfVxuICAgICAgICAgICAgICAgICAgICB7Y29tcGFyZUxpc3QubGVuZ3RoIDwgMyAmJiA8dGQgLz59XG4gICAgICAgICAgICAgICAgICA8L3RyPlxuICAgICAgICAgICAgICAgICkpfVxuICAgICAgICAgICAgICA8L3Rib2R5PlxuICAgICAgICAgICAgPC90YWJsZT5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgKX1cbiAgICAgIDwvZGl2PlxuICAgIDwvbWFpbj5cbiAgKTtcbn1cbiJdfQ==
